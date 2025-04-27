@@ -39,7 +39,7 @@ MCP provides standard on passing context to AI LLMs allowing LLMs to make inform
 
 # Architecture
 
-![width:1080px height:540px](./diagrams/architechture-1.svg)
+![width:1080px height:540px](../docs/diagrams/architechture-1.svg)
 
 ---
 
