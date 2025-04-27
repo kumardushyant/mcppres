@@ -29,7 +29,7 @@ jobs:
     - name: Build Marp slides
       run: |
         mkdir -p public
-        marp present.md --html --theme-set ./css/ --allow-local-files --output public/index.html
+        marp present.md --html --theme ./css/socrates.css --allow-local-files --output public/index.html
         cp -r diagrams public/diagrams  # Copy your images so they are available
         cp -r css public/css            # Copy your CSS for static access
 
