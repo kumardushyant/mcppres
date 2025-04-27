@@ -1,0 +1,34 @@
+name: Build and Deploy Marp Slides
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repo
+      uses: actions/checkout@v4
+
+    - name: Set up Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '22'
+
+    - name: Install Marp CLI
+      run: npm install -g @marp-team/marp-cli
+
+    - name: Build Marp slides
+      run: |
+        mkdir -p public
+        marp present.md --html --theme-set ./css/ --allow-local-files --output public/index.html
+        cp -r diagrams public/diagrams  # Copy your images so they are available
+        cp -r css public/css            # Copy your CSS for static access
+
+    - name: Deploy to GitHub Pages
+      uses: peaceiris/actions-gh-pages@v4
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_dir: ./public
