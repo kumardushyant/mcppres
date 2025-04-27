@@ -28,13 +28,13 @@ jobs:
 
     - name: Build Marp slides
       run: |
-        mkdir -p public
-        marp present.md --html --theme ./css/socrates.css --allow-local-files --output public/index.html
-        cp -r diagrams public/diagrams  # Copy your images so they are available
-        cp -r css public/css            # Copy your CSS for static access
+        mkdir -p docs
+        marp present.md --html --theme ./css/socrates.css --allow-local-files --output docs/index.html
+        cp -r diagrams docs/diagrams  # Copy your images so they are available
+        cp -r css docs/css            # Copy your CSS for static access
 
     - name: Deploy to GitHub Pages
       uses: peaceiris/actions-gh-pages@v4
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
-        publish_dir: ./public
+        publish_dir: ./docs
