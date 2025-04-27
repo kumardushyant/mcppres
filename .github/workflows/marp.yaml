@@ -18,21 +18,6 @@ jobs:
     - name: Checkout repo
       uses: actions/checkout@v4
 
-    - name: Set up Node.js
-      uses: actions/setup-node@v4
-      with:
-        node-version: '22'
-
-    - name: Install Marp CLI
-      run: npm install -g @marp-team/marp-cli
-
-    - name: Build Marp slides
-      run: |
-        mkdir -p docs
-        marp --input-dir . --html --theme ./css/socrates.css --allow-local-files --output docs
-        cp -r diagrams docs/diagrams  # Copy your images so they are available
-        cp -r css docs/css            # Copy your CSS for static access
-
     - name: Deploy to GitHub Pages
       uses: peaceiris/actions-gh-pages@v4
       with:
